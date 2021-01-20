@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { useOnClickOutside } from './hooks';
 import { useApi } from 'react-use-fetch-api';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import ReactHtmlParser from 'react-html-parser'; 
 import { GlobalStyles } from './global';
 import { theme } from './theme';
 import { Burger, Menu } from './components';
@@ -39,8 +41,6 @@ function Header() {
 }
 
 function App() {
-  const [ok, setOk] = useState(true)
-
   return (
     <Router>
       <Header />
@@ -49,9 +49,10 @@ function App() {
           <Home />
         </Route>
         <Route path="/articles/:id">
-          <ListArticles ok={ok}/>
+          <ListArticles />
         </Route>
         <Route path="/article/:id">
+          <GetArticle />
         </Route>
         <Route path="*">
           <Redirect to="/" />
@@ -71,48 +72,92 @@ function Home() {
   )
 }
 
-function ListArticles({ok, setOk}) {
-  let location = useLocation().pathname.split('/')
+function ListArticles() {
+  const location = useLocation()
+  const location2 = location.pathname.split('/')
   const { get } = useApi()
   const [data, setData] = useState(false)
   const [loading, setLoading] = useState(true)
 
-
   useEffect(() => {
-    console.log("--->", ok)
-
-    console.log(location.length, data)
-    if (location.length !== 4) {
-      return <Redirect to='/' />
-    } else {
-      get('https://api.fluidy.news/v1/articles?lang=' + location[2] + '&category=' + location[3]).then(data => {
-        setLoading(false)
-        setData(data)
-        console.log(data)
-      })
-    }
-  }, [])
+    if (location2.length !== 4) {
+        return <Redirect to='/' />
+      } else {
+        get('https://api.fluidy.news/v1/articles?lang=' + location2[2] + '&category=' + location2[3]).then(data => {
+          setLoading(false)
+          setData(data)
+          console.log(data)
+        })
+      }
+  }, [location]);
 
   return (
     <>
-        {loading && <Link>
-          <span aria-hidden="true">💁🏻‍♂️</span>
-              LOADING CATEGORIES
-            </Link>
+      {loading && 
+        <Link to="/">
+          CANCEL LOADING CATEGORIES
+        </Link>
         }
         {!loading && data &&
           <><ul>
             {data.map((elem, index) => <>
-              <Link>
+              <Link to={`/article/${location2[2]}/${location2[3]}/${elem.id}`} key={index}>
                 <span aria-hidden="true">💁🏻‍♂️</span>
-                {elem.title}
+                <p>{elem.title}</p>
+                <p>Author {elem.author}</p>
+                <p>Date {elem.pubDate}</p>
+                <LazyLoadImage
+                  alt={elem.title}
+                  height={500}
+                  src={elem.img} 
+                  width={500} />
               </Link>
-              <br></br>
-              
               <br></br>
             </>)}
           </ul></>
         }
+    </>
+  )
+}
+
+function GetArticle() {
+  const location = useLocation()
+  const location2 = location.pathname.split('/')
+  const { get } = useApi()
+  const [data, setData] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (location2.length !== 5) {
+      return <Redirect to='/' />
+    } else {
+      get('https://api.fluidy.news/v1/article?lang=' + location2[2] + '&category=' + location2[3] + '&id=' + location2[4]).then(data => {
+        console.log(data)
+
+      setLoading(false)
+        setData(data)
+      })
+    }
+  }, [location]);
+
+  return (
+    <>
+      {loading && 
+        <Link to="/">
+          CANCEL LOADING CATEGORIES
+        </Link>
+      }
+      {!loading && data &&
+        <>
+          <p>{data.title}</p>
+          <p>Author {data.author}</p>
+          <p>Date {data.pubDate}</p>
+          <p>Source {data.source}</p>
+          <p>Go to source{data.link}</p>
+          <img alt={data.title} src={data.img}></img>
+          <div> {ReactHtmlParser( data.content )} </div>
+        </>
+      }
     </>
   )
 }

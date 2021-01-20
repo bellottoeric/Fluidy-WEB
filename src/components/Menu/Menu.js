@@ -21,9 +21,9 @@ const Menu = ({ open, ...props }) => {
   return (
     <>
       <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-        {loading && <Link tabIndex={tabIndex}>
+        {loading && <Link to="/" tabIndex={tabIndex}>
           <span aria-hidden="true">💁🏻‍♂️</span>
-              LOADING CATEGORIES
+              CANCEL LOADING CATEGORIES
             </Link>
         }
         {!loading && data &&
