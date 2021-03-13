@@ -20,9 +20,8 @@ export const StyledMenu = styled.nav`
   a {
     font-size: 10px;
     text-transform: uppercase;
-    padding: 2rem 0;
     font-weight: bold;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.12rem;
     color: ${({ theme }) => theme.primaryDark};
     text-decoration: none;
     transition: color 0.3s linear;

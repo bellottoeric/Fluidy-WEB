@@ -6,8 +6,11 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
+
   *, *::after, *::before {
     box-sizing: border-box;
+    margin: auto;
+    padding: 0;
   }
 
   body {
@@ -46,3 +49,4 @@ export const GlobalStyles = createGlobalStyle`
     text-decoration: none;
   }
 `
+
