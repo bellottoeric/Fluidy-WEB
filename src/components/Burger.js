@@ -1,7 +1,9 @@
+import React from 'react';
+import { bool, func } from 'prop-types';
 import styled from 'styled-components';
 
-export const StyledBurger = styled.button`
-  position: absolute;
+const StyledBurger = styled.button`
+  position: fixed;
   top: 5%;
   left: 2rem;
   display: flex;
@@ -14,6 +16,11 @@ export const StyledBurger = styled.button`
   cursor: pointer;
   padding: 0;
   z-index: 10;
+  transform: ${({ open }) => open ? 'translateX(230px)' : 'rotate(0)'};
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
 
   span {
     width: 2rem;
@@ -23,6 +30,7 @@ export const StyledBurger = styled.button`
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
+    
 
     :first-child {
       transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
@@ -38,3 +46,26 @@ export const StyledBurger = styled.button`
     }
   }
 `;
+
+const Burger = ({ open, setOpen, ...props }) => {
+  const isExpanded = open ? true : false;
+
+
+  return (
+    <StyledBurger aria-label="Toggle menu" aria-expanded={isExpanded} open={open} onClick={() => {
+      setOpen(!open)
+      console.log('click', open)
+    }} {...props}>
+      <span />
+      <span />
+      <span />
+    </StyledBurger>
+  )
+}
+
+Burger.propTypes = {
+  open: bool.isRequired,
+  setOpen: func.isRequired,
+};
+
+export default Burger;

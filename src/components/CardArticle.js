@@ -11,20 +11,17 @@ import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
 
 const useStyles = makeStyles(() => ({
 	root: {
-		maxWidth: "30%",
-		boxShadow: 'none',
-		borderRadius: 0,
+		"height": "470px",
 	},
 	content: {
 		padding: 24,
 	},
 	cta: {
-		marginTop: 24,
 		textTransform: 'initial',
 	},
 }));
 
-export const NewsCardDemo = React.memo(function NewsCard({ elem }) {
+const CardArticle = React.memo(function NewsCard({ elem }) {
 	const styles = useStyles();
 	const mediaStyles = useWideCardMediaStyles();
 	const textCardContentStyles = useN01TextInfoContentStyles();
@@ -48,4 +45,4 @@ export const NewsCardDemo = React.memo(function NewsCard({ elem }) {
 	);
 });
 
-export default NewsCardDemo
+export default CardArticle
