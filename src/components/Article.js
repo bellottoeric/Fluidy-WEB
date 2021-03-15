@@ -15,13 +15,15 @@ import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } f
 
 const useStyles = makeStyles(() => ({
     root: {
-        maxWidth: "80%",
+        width: "90vw",
         margin: 'auto',
         borderRadius: 12,
         padding: 12,
     },
     media: {
         borderRadius: 6,
+        backgroundSize: "contain",
+        backgroundColor: "white",
     },
     containerCardMedia: {
         width: "70% !important"
@@ -40,15 +42,15 @@ const Div = styled.div`
     },
     h1 {
         text-align: center;
-        font-size: 3vw;
+        font-size: 4vh;
     },
     h2 {
         text-align: center;
-        font-size: 2.5vw;
+        font-size: 3.5vh;
     }, 
     h3 {
         text-align: center;
-        font-size: 2vw;
+        font-size: 3vh;
     },
     li {
         list-style: none;
@@ -62,10 +64,12 @@ const Article = React.memo(function MusicCard({ elem }) {
     const textCardContentStyles = useN04TextInfoContentStyles();
     const shadowStyles = useOverShadowStyles({ inactive: true });
 
+    console.log(elem)
     scroll.scrollToTop({
         duration: 1250,
-        delay: 0,
-        smooth: "true"
+        delay: 100,
+        smooth: "true",
+        offset: 100
     });
     return (
         <Div className="okkk">
@@ -102,7 +106,6 @@ function BetterHtml(elem) {
     elem.content = elem.content.replaceAll('<h2', "<br><Br><h2")
     elem.content = elem.content.replace(/<img alt.*>/g, "")
 
-    console.log(/<img alt.*><br>/g)
     if (elem.content.match(/<img.*?src="(.*?)"[^>]+>/g)) {
         for (var i of elem.content.match(/<img.*?src="(.*?)"[^>]+>/g)) {
             elem.content = elem.content.replaceAll(i, i + "<br>")
@@ -111,6 +114,8 @@ function BetterHtml(elem) {
 
     elem.content = elem.content.replaceAll('<div></div>', "")
     elem.content = elem.content.replaceAll('<br><br>', "<br>").replaceAll('<br><br>', "<br>").replaceAll('<br><br>', "<br>")
+
+    elem.content = elem.content.replaceAll('min-width:300px;', "")
     return (ReactHtmlParser(elem.content))
 }
 

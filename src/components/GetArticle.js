@@ -4,9 +4,10 @@ import { useApi } from 'react-use-fetch-api';
 import Article from "./Article.js"
 import ListArticles from "./ListArticles.js"
 
+var cacheArticles = []
+
 import {
     Link,
-    Redirect,
     useLocation
 } from "react-router-dom";
 
@@ -16,12 +17,19 @@ function GetArticle() {
     const { get } = useApi()
     const [data, setData] = useState(false)
     const [loading, setLoading] = useState(true)
+    const lang = actualUrl[2]
+    const category = actualUrl[3]
+    const id = actualUrl[4]
+    const cacheContent = lang + category + id
+
 
     useEffect(() => {
-        if (actualUrl.length !== 6) {
-            return <Redirect to='/' />
+        if (cacheArticles[cacheContent]) {
+            setLoading(false)
+            setData(cacheArticles[cacheContent])
         } else {
-            get(globalConfig.host + '/v1/article?lang=' + actualUrl[2] + '&category=' + actualUrl[3] + '&id=' + actualUrl[4]).then(data => {
+            get(globalConfig.host + '/v1/article?lang=' + lang + '&category=' + category + '&id=' + id).then(data => {
+                cacheArticles[cacheContent] = data
                 setLoading(false)
                 setData(data)
             })

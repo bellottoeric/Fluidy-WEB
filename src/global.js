@@ -8,6 +8,7 @@ export const GlobalStyles = createGlobalStyle`
 
 
   *, *::after, *::before {
+        line-height: 1.25 !important;
     box-sizing: border-box;
     margin: auto;
     padding: 0;

@@ -24,10 +24,15 @@ const StyledMenu = styled.nav`
   position: fixed;
   width: 16%; 
 
+  @media (max-width: ${({ theme }) => theme.biggerTablet}) {
+    width: 30%;
+  }
+  @media (max-width: ${({ theme }) => theme.tablet}) {
+    width: 45%;
+  }
   @media (max-width: ${({ theme }) => theme.mobile}) {
     width: 100%;
   }
-
   a {
     font-size: 10px;
     text-transform: uppercase;
@@ -38,7 +43,7 @@ const StyledMenu = styled.nav`
     transition: color 0.3s linear;
 
     @media (max-width: ${({ theme }) => theme.mobile}) {
-      font-size: 1.5rem;
+      font-size: 0.75rem;
       text-align: center;
     }
 

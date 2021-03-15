@@ -14,7 +14,11 @@ const useStyles = makeStyles(() => ({
 		"height": "470px",
 	},
 	content: {
-		padding: 24,
+		"flex-flow": "row wrap",
+		"align-items": "center",
+		"justify-content": "center",
+		"display": "flex",
+		"height": "60%",
 	},
 	cta: {
 		textTransform: 'initial',

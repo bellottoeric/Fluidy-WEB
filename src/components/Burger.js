@@ -47,19 +47,52 @@ const StyledBurger = styled.button`
   }
 `;
 
+const StyledTitle = styled.p`
+  position: fixed;
+  top: 6.7%;
+  color: black;
+  left: -12.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 14rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  z-index: 10;
+  transform: ${({ open }) => open ? 'translateX(230px)' : 'rotate(0)'};
+  -webkit-transition: 1s ease-in-out;
+  -moz-transition: 1s ease-in-out;
+  -o-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+  display: ${({ open }) => open ? 'block' : 'none'};
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.12rem;
+  color: #0D0C1D;
+  text-decoration: none;
+  transition: color 0.3s linear;
+`;
 const Burger = ({ open, setOpen, ...props }) => {
   const isExpanded = open ? true : false;
 
 
   return (
-    <StyledBurger aria-label="Toggle menu" aria-expanded={isExpanded} open={open} onClick={() => {
-      setOpen(!open)
-      console.log('click', open)
-    }} {...props}>
-      <span />
-      <span />
-      <span />
-    </StyledBurger>
+    <div>
+      <StyledTitle open={open}>
+        Select a category
+        <span />
+      </StyledTitle>
+      <StyledBurger aria-label="Toggle menu" aria-expanded={isExpanded} open={open} onClick={() => {
+        setOpen(!open)
+      }} {...props}>
+        <span />
+        <span />
+        <span />
+      </StyledBurger>
+    </div>
   )
 }
 

@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './global';
+import styled from 'styled-components';
 import { theme } from './theme';
 import { Burger, Menu, ListArticles, GetArticle } from './components';
 import FocusLock from 'react-focus-lock';
+import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
 import useMouse from '@react-hook/mouse-position'
 import {
 	BrowserRouter as Router,
@@ -42,9 +44,9 @@ function Header(mouse) {
 
 	useOnClickOutside(node, () => setOpen(false));
 
-	if (!open && mouse.mouse.x < 200 && saveX > 200 && saveX !== 0) {
+	if (!open && mouse.mouse.x && mouse.mouse.x < 200 && saveX > 200 && saveX !== 0) {
 		setOpen(true)
-	} else if (open && mouse.mouse.x > 400 && saveX < 400 && saveX !== 0) {
+	} else if (open && mouse.mouse.x && mouse.mouse.x > 400 && saveX < 400 && saveX !== 0) {
 		setOpen(false)
 	} else {
 		saveX = mouse.mouse.x
@@ -65,6 +67,11 @@ function Header(mouse) {
 	);
 }
 
+const Div = styled.div`
+    
+
+`;
+
 function App() {
 	const ref = React.useRef(null)
 	const mouse = useMouse(ref, {
@@ -74,27 +81,21 @@ function App() {
 
 
 	return (
-		<Router>
-			<div ref={ref}>
+		<Div ref={ref}>
+			<Router>
 				<Header mouse={mouse} />
-				<AnimatePresence>
-					<Switch >
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route path="/articles/:id">
-							<ListArticles />
-						</Route>
-						<Route path="/article/:id">
-							<GetArticle />
-						</Route>
-						<Route path="*">
-							<Redirect to="/" />
-						</Route>
-					</Switch>
-				</AnimatePresence>
-			</div>
-		</Router>
+				<CacheSwitch>
+					<CacheRoute exact path="/">
+						<Home />
+					</CacheRoute>
+					<CacheRoute exact path="/articles/:lang/:category/" component={ListArticles} cacheKey="MyComponent" />
+					<CacheRoute exact path="/article/:lang/:category/:id/:name" component={GetArticle} />
+					<CacheRoute path="*">
+						<Redirect to="/" />
+					</CacheRoute>
+				</CacheSwitch>
+			</Router>
+		</Div>
 	);
 }
 
