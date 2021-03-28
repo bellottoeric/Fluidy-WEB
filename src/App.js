@@ -1,21 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './global';
-import styled from 'styled-components';
 import { theme } from './theme';
-import { Burger, Menu, ListArticles, GetArticle } from './components';
+import { Burger, Menu, ListArticles, GetArticle, DivGlobalCSS } from './components';
 import FocusLock from 'react-focus-lock';
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
 import useMouse from '@react-hook/mouse-position'
 import {
 	BrowserRouter as Router,
-	Switch,
 	Link,
-	Route,
 	Redirect,
-	useLocation
 } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 
 var saveX = 0
 
@@ -45,9 +40,9 @@ function Header(mouse) {
 	useOnClickOutside(node, () => setOpen(false));
 
 	if (!open && mouse.mouse.x && mouse.mouse.x < 200 && saveX > 200 && saveX !== 0) {
-		setOpen(true)
+		//setOpen(true)
 	} else if (open && mouse.mouse.x && mouse.mouse.x > 400 && saveX < 400 && saveX !== 0) {
-		setOpen(false)
+		//setOpen(false)
 	} else {
 		saveX = mouse.mouse.x
 	}
@@ -67,10 +62,8 @@ function Header(mouse) {
 	);
 }
 
-const Div = styled.div`
-    
 
-`;
+
 
 function App() {
 	const ref = React.useRef(null)
@@ -81,7 +74,7 @@ function App() {
 
 
 	return (
-		<Div ref={ref}>
+		<DivGlobalCSS ref={ref}>
 			<Router>
 				<Header mouse={mouse} />
 				<CacheSwitch>
@@ -95,7 +88,7 @@ function App() {
 					</CacheRoute>
 				</CacheSwitch>
 			</Router>
-		</Div>
+		</DivGlobalCSS>
 	);
 }
 

@@ -20,7 +20,6 @@ const StyledMenu = styled.nav`
 
   overflow-y: scroll;
   height: 100%;
-  "overflow-y": "scroll", "height": "100%", "position": "fixed";
   position: fixed;
   width: 16%; 
 

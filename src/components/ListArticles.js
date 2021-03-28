@@ -86,7 +86,6 @@ function ListArticles() {
                         <ul style={CustomStyle.containerArticles}>
                             {data.map((elem, index) =>
                                 <div style={CustomStyle.containerArticle(matches)}>
-
                                     <Link to={`/article/${lang}/${category}/${elem.id}/${betterUrl(elem.title)}`} key={index - 1}>
                                         <motion.div
                                             animate={{

@@ -18,7 +18,7 @@ const useStyles = makeStyles(() => ({
 		"align-items": "center",
 		"justify-content": "center",
 		"display": "flex",
-		"height": "60%",
+		"height": "57%",
 	},
 	cta: {
 		textTransform: 'initial',
