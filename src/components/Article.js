@@ -68,10 +68,21 @@ const CustomStyle = {
         paddingLeft: 0,
     }),
     containerButton: isRowBased => ({
-        paddingRight: 0,
-        paddingLeft: 0,
+        padding: 0,
+        height: isRowBased ? '4vw' : '14vw',
+        width: isRowBased ? '4vw' : '14vw',
     }),
 
+    containerButtonSvg: isRowBased => ({
+        height: isRowBased ? '3vw' : '14vw',
+        width: isRowBased ? '4vw' : '14vw',
+    }),
+    footerArticleButton: isRowBased => ({
+        fontSize: isRowBased ? '3rem' : '2rem',
+    }),
+    footerArticleSpan: isRowBased => ({
+        marginRight: "10px",
+    }),
 }
 
 const Line = styled.hr`
@@ -85,7 +96,7 @@ const Article = React.memo(function MusicCard({ elem }) {
     const mediaStyles = useFourThreeCardMediaStyles();
     const textCardContentStyles = useN04TextInfoContentStyles();
     const shadowStyles = useOverShadowStyles({ inactive: true });
-    const mediaMatch = window.matchMedia('(min-width: 500px)');
+    const mediaMatch = window.matchMedia('(min-width: 815px)');
     const [matches, setMatches] = useState(mediaMatch.matches);
 
     useEffect(() => {
@@ -119,7 +130,10 @@ const Article = React.memo(function MusicCard({ elem }) {
                     />
                     <Line />
                     <br />
-                    <h3 className="shareItElement"><span>Listen the article</span><span>!</span></h3>
+                    <h5 style={CustomStyle.footerArticleButton(matches)} className="shareItElement">
+                        <span style={CustomStyle.footerArticleSpan(matches)}>Listen the article</span>
+                        <span>!</span>
+                    </h5>
                     <ReactPlayer
                         url={globalConfig.host + elem.sound}
                         width="73vw"
@@ -129,52 +143,55 @@ const Article = React.memo(function MusicCard({ elem }) {
                     />
                     <br />
                     <br />
-                    <h3 className="shareItElement"><span>SHARE IT</span><span>!</span></h3>
+                    <h5 style={CustomStyle.footerArticleButton(matches)} className="shareItElement">
+                        <span style={CustomStyle.footerArticleSpan(matches)}>SHARE IT</span>
+                        <span>!</span>
+                    </h5>
                     <div className={cx(styles.shareDiv)}>
                         <div className={cx(styles.shareButtonDiv)}>
                             <EmailShareButton url={elem.pathname}>
                                 <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeEmail ai-element6">
-                                    <EmailIcon size={32} round={true} />
+                                    <EmailIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </EmailShareButton>
                         </div>
                         <div className={cx(styles.shareButtonDiv)}>
                             <TwitterShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typeTwitter ai-element6">
-                                    <TwitterIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeTwitter ai-element6">
+                                    <TwitterIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </TwitterShareButton>
                         </div>
                         <div className={cx(styles.shareButtonDiv)}>
                             <FacebookShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typeFacebook ai-element6">
-                                    <FacebookIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeFacebook ai-element6">
+                                    <FacebookIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </FacebookShareButton>
                         </div>
                         <div className={cx(styles.shareButtonDiv)}>
                             <LinkedinShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typeLinkedin ai-element6">
-                                    <LinkedinIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeLinkedin ai-element6">
+                                    <LinkedinIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </LinkedinShareButton>
                         </div>
                         <div className={cx(styles.shareButtonDiv)}>
                             <PinterestShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typePinterest ai-element6">
-                                    <PinterestIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typePinterest ai-element6">
+                                    <PinterestIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </PinterestShareButton>
                         </div>
                         <div className={cx(styles.shareButtonDiv)}>
                             <RedditShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typeReddit ai-element6">
-                                    <RedditIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeReddit ai-element6">
+                                    <RedditIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </RedditShareButton>
@@ -182,16 +199,16 @@ const Article = React.memo(function MusicCard({ elem }) {
                         <div className={cx(styles.shareButtonDiv)}>
 
                             <TelegramShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typeTelegram ai-element6">
-                                    <TelegramIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeTelegram ai-element6">
+                                    <TelegramIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </TelegramShareButton>
                         </div>
                         <div className={cx(styles.shareButtonDiv)}>
                             <WhatsappShareButton url={elem.pathname}>
-                                <a href="#" className="r-link ai-element ai-element_type ai-element_typeWhatsapp ai-element6">
-                                    <WhatsappIcon size={32} round={true} />
+                                <a style={CustomStyle.containerButton(matches)} href="#" className="r-link ai-element ai-element_type ai-element_typeWhatsapp ai-element6">
+                                    <WhatsappIcon style={CustomStyle.containerButtonSvg(matches)} size={32} round={true} />
                                 </a>
                                 <br />
                             </WhatsappShareButton>
@@ -211,6 +228,8 @@ function HaveTitle(elem) {
 }
 
 function BetterHtml(elem) {
+    if (!elem.content)
+        return (ReactHtmlParser(elem.content))
     elem.content = elem.content.replaceAll('<img', "<br><img")
     elem.content = elem.content.replaceAll('<h2', "<br><Br><h2")
     elem.content = elem.content.replace(/<img alt.*>/g, "").replace(/<img src alt.*>/g, "")

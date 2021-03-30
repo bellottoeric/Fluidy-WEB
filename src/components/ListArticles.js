@@ -66,7 +66,7 @@ function ListArticles() {
         <>
             {loading &&
                 <Link to="/">
-                    CANCEL LOADING CATEGORIES
+                    Loading...
         		</Link>
             }
             {!loading && data.length &&
@@ -79,7 +79,7 @@ function ListArticles() {
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbKqoi3Zy7aZSfpiq1z6VO1-hN4Tduw9ZKVA&usqp=CAU"
                                 width={500} />
                         </Link>
-                        <h1>{category.replace(/-/g, " ")}</h1>
+                        <h1>{category && category.replace(/-/g, " ")}</h1>
                         <h2>{lang}</h2>
                     </div>
                     <div >

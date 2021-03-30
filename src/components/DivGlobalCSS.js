@@ -2,11 +2,14 @@ import styled from 'styled-components';
 
 
 const DivGlobalCSS = styled.div`
-
+/*
+General
+---------------------------------------
+*/
 img,
 p>img {
-	width: 50% !important;
-	margin-left: 25%;
+	width: 78% !important;
+	margin-left: 10%;
 	margin-bottom: 5%;
 	@media (min-width: 815px) {
   		width: 33% !important;
@@ -23,36 +26,46 @@ h1 {
 	text-align: center;
 	font-size: 2vh;
 	@media (min-width: 815px) {
-  		font-size: 4vh !important;
+  		font-size: 2.5vh !important;
 	}
 },
-
-
-
 h2 {
 	text-align: center;
-	font-size: 3.5vh;
+	font-size: 2vh;
+	@media (min-width: 815px) {
+  		font-size: 2.5vh !important;
+	}
 },
 h3 {
 	text-align: center;
-	font-size: 3vh;
+	font-size: 2vh;
+	@media (min-width: 815px) {
+  		font-size: 2.5vh !important;
+	}
 }
 h4 {
 	text-align: center;
-	font-size: 2.4vh;
+	font-size: 2vh;
 	@media (min-width: 815px) {
-  		font-size: 4vh !important;
+  		font-size: 2.5vh !important;
 	}
 },
-
+h5 {
+	text-align: center;
+},
 
 ,
 li {
 	list-style: none;
 	margin: auto;
-}
+},
 
-,
+
+/*
+Article share button
+---------------------------------------
+*/
+
 .r-button {
 	--uirButtonBackgroundColor: var(--rButtonBackgroundColor, transparent);
 	--uirButtonPadding: var(--rButtonPadding, var(--rButtonPaddingTop, 0) var(--rButtonPaddingRight, 0) var(--rButtonPaddingBottom, 0) var(--rButtonPaddingLeft, 0));
@@ -203,6 +216,11 @@ button.ai-element {
 	transform: translate3d(100%, 0, 0);
 }
 
+/*
+Article share text
+---------------------------------------
+*/
+
 @fontface {
 	font-family: 'Bungee Inline', cursive;
 	src: url('https://fonts.googleapis.com/css?family=Bungee+Inline')
@@ -211,7 +229,6 @@ button.ai-element {
 .shareItElement {
 	font-family: 'Bungee Inline', cursive;
 	margin-bottom: 1%;
-	font-size: 3em;
 	padding: 0;
 	color: white;
 	text-shadow: 0 0.1em 20px rgba(52, 48, 120, 1), 0.05em -0.03em 0 rgba(52, 48, 120, 1), 0.05em 0.005em 0 rgba(52, 48, 120, 1), 0em 0.08em 0 rgba(52, 48, 120, 1), 0.05em 0.08em 0 rgba(52, 48, 120, 1), 0px -0.03em 0 rgba(52, 48, 120, 1), -0.03em -0.03em 0 rgba(52, 48, 120, 1), -0.03em 0.08em 0 rgba(52, 48, 120, 1), -0.03em 0 0 rgba(52, 48, 120, 1);
@@ -252,6 +269,139 @@ button.ai-element {
 		transform: scale(1) rotateZ(-359deg);
 	}
 }
+
+
+/*
+Home page Title
+---------------------------------------
+*/
+
+.ContainerHeaderTitle {
+	background: 50% 100% / 50% 50% no-repeat
+	radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	font-size: 10vw;
+	font-family: Copperplate Gothic Light, sans-serif;
+	animation: reveal 3000ms ease-in-out forwards 200ms,
+	glow 2500ms linear infinite 2000ms;
+}
+
+@keyframes reveal {
+	80%{
+		letter-spacing: 8px;
+	}
+	100% {
+		background-size: 300% 300%;
+	}
+}
+@keyframes glow {
+	40% {
+		text-shadow: 0 0 8px #fff;
+	}
+}
+
+/*
+Hexagon flag
+---------------------------------------
+*/
+
+.choiceCountryText {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: "100%";
+	animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
+
+.flag-hexagon-column {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: 100%;
+	animation: float 7s ease-in-out infinite;
+
+}
+
+.flag-hexagon-row {
+	display: flex;
+	flex-direction: row;
+	flex-basis: 18%;
+	flex: 1;
+}
+
+.flag-hexagon {
+	display: flex;
+	position: relative;
+	width: 240px;
+	height: 265px;
+	background-color: #424242;
+	-webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+	margin: 0;
+	width: 15vh;
+	height: 15vh;
+	width: 14vh;
+    height: 14vh;
+	margin: 2px;
+	@media (min-width: 815px) {
+  		width: 27vh;
+    	height: 27vh;
+		margin: 10px;
+	}
+
+}
+
+.flag-img {
+	margin: 0;
+	width: 100% !important;
+	height: auto;
+	display: block;
+	object-fit: cover;
+	
+}
+
+.flag-contain {
+    object-fit: contain !important;
+	background-color: #b22234;
+}
+
+.flag-fill {
+    object-fit: fill !important;
+}
+
+.flag-hexagon:nth-child(4) {
+  display: none;
+}
+
+.flag-hexagon:nth-child(5) {
+  display: none;
+}
+
+.flag-hexagon:nth-child(6) {
+  display: none;
+}
+
+.flag-hexagon:nth-child(7) {
+  display: none;
+}
+
 
 `;
 

@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from './global';
 import { theme } from './theme';
-import { Burger, Menu, ListArticles, GetArticle, DivGlobalCSS } from './components';
+import { Burger, Menu, ListArticles, GetArticle, Home, DivGlobalCSS } from './components';
 import FocusLock from 'react-focus-lock';
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
 import useMouse from '@react-hook/mouse-position'
@@ -11,6 +11,7 @@ import {
 	Link,
 	Redirect,
 } from "react-router-dom";
+
 
 var saveX = 0
 
@@ -48,17 +49,12 @@ function Header(mouse) {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
-			<>
-				<GlobalStyles />
-				<div name="HeaderContainer" ref={node}>
-					<FocusLock disabled={!open}>
-						<Burger open={open} setOpen={setOpen} aria-controls={menuId} />
-						<Menu open={open} setOpen={setOpen} id={menuId} />
-					</FocusLock>
-				</div>
-			</>
-		</ThemeProvider>
+		<div name="HeaderContainer" ref={node}>
+			<FocusLock disabled={!open}>
+				<Burger open={open} setOpen={setOpen} aria-controls={menuId} />
+				<Menu open={open} setOpen={setOpen} id={menuId} />
+			</FocusLock>
+		</div>
 	);
 }
 
@@ -76,13 +72,30 @@ function App() {
 	return (
 		<DivGlobalCSS ref={ref}>
 			<Router>
-				<Header mouse={mouse} />
 				<CacheSwitch>
+
 					<CacheRoute exact path="/">
-						<Home />
+						<ThemeProvider theme={theme}>
+							<GlobalStyles />
+							<Home />
+						</ThemeProvider>
 					</CacheRoute>
-					<CacheRoute exact path="/articles/:lang/:category/" component={ListArticles} cacheKey="MyComponent" />
-					<CacheRoute exact path="/article/:lang/:category/:id/:name" component={GetArticle} />
+					<CacheRoute exact path="/articles/:lang/:category/">
+						<ThemeProvider theme={theme}>
+							<GlobalStyles />
+							<Header mouse={mouse} />
+							<ListArticles />
+						</ThemeProvider>
+
+					</CacheRoute>
+					<CacheRoute exact path="/article/:lang/:category/:id/:name">
+						<ThemeProvider theme={theme}>
+							<GlobalStyles />
+							<Header mouse={mouse} />
+
+							<GetArticle />
+						</ThemeProvider>
+					</CacheRoute>
 					<CacheRoute path="*">
 						<Redirect to="/" />
 					</CacheRoute>
@@ -92,15 +105,8 @@ function App() {
 	);
 }
 
-function Home() {
-	return (
-		<div>
-			<h1>Hello. This is burger menu tutorial</h1>
-			<img src="https://image.flaticon.com/icons/svg/2016/2016012.svg" alt="burger icon" />
-			<small>from <Link to="/articles/1">www.flaticon.com</Link></small>
-		</div>
-	)
-}
+
+
 
 
 

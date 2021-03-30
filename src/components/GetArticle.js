@@ -40,7 +40,7 @@ function GetArticle(props) {
         <>
             {loading &&
                 <Link to="/">
-                    CANCEL LOADING CATEGORIES
+                    Loading...
         		</Link>
             }
             {!loading && data &&
