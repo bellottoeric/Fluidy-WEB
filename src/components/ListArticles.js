@@ -73,11 +73,11 @@ function ListArticles() {
                 <div>
                     <div style={CustomStyle.containerHeader}>
                         <Link to={`/`}>
-                            <LazyLoadImage
-                                alt="Fluidy Logo Go to home"
-                                height={500}
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbKqoi3Zy7aZSfpiq1z6VO1-hN4Tduw9ZKVA&usqp=CAU"
-                                width={500} />
+                            <div className="levatation">
+                                <span className="ContainerHeaderTitle">
+                                    FLUIDY
+                                </span>
+                            </div>
                         </Link>
                         <h1>{category && category.replace(/-/g, " ")}</h1>
                         <h2>{lang}</h2>
@@ -92,8 +92,7 @@ function ListArticles() {
                                                 scale: [0.8, 0.85, 0.90, 0.93, 0.95, 0.97, 0.99, 1, 1, 1, 1, 1, 1],
                                                 rotate: [3, -3, 2.5, -2.5, 2, -2, 1.5, -1.5, 1, -1, 0.5, -0.5, 0],
                                             }}
-                                            transition={{ duration: 1 }}
-                                        >
+                                            transition={{ duration: 1 }}>
                                             <CardArticle elem={elem} style={CustomStyle.containerArticleIn}></CardArticle>
                                         </motion.div>
                                     </Link>

@@ -12,7 +12,7 @@ import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import ReactHtmlParser from 'react-html-parser';
 import ReactPlayer from "react-player";
 import styled from 'styled-components';
-import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { animateScroll as scroll } from 'react-scroll'
 import {
     EmailShareButton,
     TwitterShareButton,

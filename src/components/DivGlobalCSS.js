@@ -45,7 +45,7 @@ h3 {
 }
 h4 {
 	text-align: center;
-	font-size: 2vh;
+	font-size: 2.5vh;
 	@media (min-width: 815px) {
   		font-size: 2.5vh !important;
 	}
@@ -275,6 +275,25 @@ Article share text
 Home page Title
 ---------------------------------------
 */
+.levatation {
+	display: "flex";
+	justifyContent: "center";
+	alignItems: "center";
+	height: "100%";
+	animation: float 5s ease-in-out infinite, glow 2500ms linear infinite 2000ms;
+	text-align: center !important;
+	margin-bottom: 20px;
+}
+.levatationHeavy {
+	animation: floatHeavy 10s ease-in-out infinite;
+}
+
+.levatationHeavy > div {
+	@media (min-width: 815px) {
+  			margin-bottom: 10px !important;
+	}
+}
+
 
 .ContainerHeaderTitle {
 	background: 50% 100% / 50% 50% no-repeat
@@ -284,8 +303,7 @@ Home page Title
 	color: transparent;
 	font-size: 10vw;
 	font-family: Copperplate Gothic Light, sans-serif;
-	animation: reveal 3000ms ease-in-out forwards 200ms,
-	glow 2500ms linear infinite 2000ms;
+	animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
 }
 
 @keyframes reveal {
@@ -307,26 +325,28 @@ Hexagon flag
 ---------------------------------------
 */
 
-.choiceCountryText {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: "100%";
-	animation: float 5s ease-in-out infinite;
-}
 
 @keyframes float {
 	0% {
-		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
 		transform: translatey(0px);
 	}
 	50% {
-		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-		transform: translatey(-20px);
+		transform: translatey(-15px);
 	}
 	100% {
-		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
 		transform: translatey(0px);
+	}
+}
+
+@keyframes floatHeavy {
+	0% {
+		transform: translatey(30px);
+	}
+	50% {
+		transform: translatey(-5px);
+	}
+	100% {
+		transform: translatey(30px);
 	}
 }
 
@@ -335,8 +355,6 @@ Hexagon flag
 	flex-direction: column;
 	flex-wrap: wrap;
 	width: 100%;
-	animation: float 7s ease-in-out infinite;
-
 }
 
 .flag-hexagon-row {
@@ -402,6 +420,12 @@ Hexagon flag
   display: none;
 }
 
+
+.listCategory:hover::before,
+.listCategory:hover::after,
+.listCategory:hover {
+	animation: glow 2500ms linear infinite 1ms;
+}
 
 `;
 
