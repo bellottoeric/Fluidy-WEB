@@ -11,6 +11,13 @@ import { useN04TextInfoContentStyles } from '@mui-treasury/styles/textInfoConten
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import ReactHtmlParser from 'react-html-parser';
 import ReactPlayer from "react-player";
+var popeyelib = require('popeyelib')
+var shuffleArray = popeyelib.shuffleArray
+var wait = popeyelib.wait
+var makeId = popeyelib.makeId
+var oc = popeyelib.oc
+var rNumber = popeyelib.rNumber
+var uniq = popeyelib.uniq
 import styled from 'styled-components';
 import { animateScroll as scroll } from 'react-scroll'
 import {
@@ -105,6 +112,19 @@ const Article = React.memo(function MusicCard({ elem }) {
         return () => mediaMatch.removeListener(handler);
     });
 
+    useEffect(async () => {
+        for (var i of document.getElementsByClassName("tweet")) {
+            var id = i.getAttribute("tweetID");
+            console.log(id, i)
+            twttr.widgets.createTweet(id, i, {
+                conversation: 'none',    // or all
+                cards: 'hidden',  // or visible
+                theme: 'light'    // or dark
+            })
+            await wait(1000)
+        }
+    });
+
     scroll.scrollToTop({
         duration: 1250,
         delay: 0,
@@ -131,7 +151,7 @@ const Article = React.memo(function MusicCard({ elem }) {
                     <Line />
                     <br />
                     <h5 style={CustomStyle.footerArticleButton(matches)} className="shareItElement">
-                        <span style={CustomStyle.footerArticleSpan(matches)}>Listen the article</span>
+                        <span style={CustomStyle.footerArticleSpan(matches)}>Listen</span>
                         <span>!</span>
                     </h5>
                     <ReactPlayer
