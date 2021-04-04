@@ -64,7 +64,7 @@ function Home() {
                         <div className="levatation">
                             <span>
                                 <Animator animation={batch(MoveIn(0, 500), Fade())}>
-                                    Functionnalities
+                                    Don't miss any news with Fluidy
                                 </Animator>
                             </span>
                         </div>
@@ -74,10 +74,14 @@ function Home() {
                     <Animator animation={FadeUp}>
                         <div className="levatation">
                             <span>
-                                <Animator animation={batch(MoveIn(-1000, 0), MoveOut(1000, 0))}>Hello Guys</Animator>
-                                <Animator animation={batch(MoveIn(-750, 0), MoveOut(750, 0))}>Nice to meet you</Animator>
-                                <Animator animation={batch(MoveIn(-500, 0), MoveOut(500, 0))}>Good bye</Animator>
-                                <Animator animation={batch(MoveIn(-250, 0), MoveOut(250, 0))}>See you </Animator>
+                                <Animator animation={batch(MoveIn(0, 0), Fade())}>
+                                    Functionnalities
+                                </Animator>
+                                <Animator animation={batch(MoveIn(-850, 0), MoveOut(850, 0))}>Rss</Animator>
+                                <Animator animation={batch(MoveIn(-750, 0), MoveOut(750, 0))}>Twitter - Reddit</Animator>
+                                <Animator animation={batch(MoveIn(-650, 0), MoveOut(650, 0))}>+20 Categories for 6 langues</Animator>
+                                <Animator animation={batch(MoveIn(-550, 0), MoveOut(550, 0))}>Open source project</Animator>
+                                <Animator animation={batch(MoveIn(-450, 0), MoveOut(450, 0))}>Public API</Animator>
                             </span>
                         </div>
                     </Animator>

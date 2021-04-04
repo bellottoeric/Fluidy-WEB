@@ -11,13 +11,6 @@ import { useN04TextInfoContentStyles } from '@mui-treasury/styles/textInfoConten
 import { useOverShadowStyles } from '@mui-treasury/styles/shadow/over';
 import ReactHtmlParser from 'react-html-parser';
 import ReactPlayer from "react-player";
-var popeyelib = require('popeyelib')
-var shuffleArray = popeyelib.shuffleArray
-var wait = popeyelib.wait
-var makeId = popeyelib.makeId
-var oc = popeyelib.oc
-var rNumber = popeyelib.rNumber
-var uniq = popeyelib.uniq
 import styled from 'styled-components';
 import { animateScroll as scroll } from 'react-scroll'
 import {
@@ -121,7 +114,11 @@ const Article = React.memo(function MusicCard({ elem }) {
                 cards: 'hidden',  // or visible
                 theme: 'light'    // or dark
             })
-            await wait(1000)
+        }
+        if (document.getElementsByClassName("reddit-card").length > 0) {
+            let redditScript = document.createElement("script");
+            redditScript.setAttribute("src", "https://embed.redditmedia.com/widgets/platform.js");
+            document.body.appendChild(redditScript);
         }
     });
 
